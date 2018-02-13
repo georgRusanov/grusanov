@@ -13,6 +13,17 @@ public class Max {
      * @return максимальное из двух чисел.
      */
     public int max(int first, int second) {
-      return first > second ? first : second;
-  }
+        return first > second ? first : second;
+    }
+
+    /**
+     *
+     * @param first первое число.
+     * @param second второе число.
+     * @param third третье число
+     * @return макс из трех чисел
+     */
+    public int max(int first, int second, int third){
+        return max(max(first, second), third);
+    }
 }
