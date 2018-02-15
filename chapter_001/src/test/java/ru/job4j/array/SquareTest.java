@@ -13,7 +13,7 @@ import static org.junit.Assert.assertThat;
 public class SquareTest {
 
     @Test
-    public void whenFirstLessSecond() {
+    public void whenArrayHaveLengthTwoThenOneFour() {
         Square array = new Square();
         int[] result = array.calculate(2);
         int[] expected = {1, 4};
