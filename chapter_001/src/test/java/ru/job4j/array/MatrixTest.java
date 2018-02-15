@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 
 
 /**
- * @author Georg Rusanov (rusanovgeorgy@gmail.com)
+ * @author Georg  Rusanov (rusanovgeorgy@gmail.com)
  * @version $Id$
  * @since 0.1
  */
