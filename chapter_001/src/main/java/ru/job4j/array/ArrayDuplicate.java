@@ -5,6 +5,7 @@ package ru.job4j.array;
  * @version $Id$
  * @since 0.1
  */
+ /*
 public class ArrayDuplicate {
 
     public String[] remove(String[] array){
@@ -14,3 +15,4 @@ public class ArrayDuplicate {
         return -1;
     }
 }
+*/

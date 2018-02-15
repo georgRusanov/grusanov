@@ -18,7 +18,7 @@ public class MatrixTest {
     public void WhenFourAndFourThanSixteen() {
         Matrix matrix = new Matrix();
         int[][] result = matrix.multiple(5);
-        int[] expected = 16;
+        int expected = 16;
         assertThat(result[3][3], is(expected));
     }
     
@@ -26,7 +26,7 @@ public class MatrixTest {
     public void WhenEightAndNinetThanSeventyTwo() {
         Matrix matrix = new Matrix();
         int[][] result = matrix.multiple(9);
-        int[] expected = 72;
+        int expected = 72;
         assertThat(result[8][7], is(expected));
     }
 }

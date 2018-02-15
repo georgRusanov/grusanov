@@ -6,7 +6,7 @@ package ru.job4j.array;
  * @since 0.1
  */
 public class FindLoop {
-    public static int indexOf(int[] data, int el) {
+    public int indexOf(int[] data, int el) {
 
         int rsl = -1; // если элемента нет в массиве, то возвращаем -1.
 

@@ -16,14 +16,16 @@ public class FindLoopTest {
     @Test
     public void IndexIsThree() {
         int[] array = {1, 2, 5, 6, 7};
-        int result = FindLoop.indexOf(array,6);
+        FindLoop findLoop = new FindLoop();
+        int result = findLoop.indexOf(array,6);
         assertThat(result, is(3));
     }
 
     @Test
     public void IndexIsMinusOne() {
         int[] array = {1, 2, 5, 6, 7};
-        int result = FindLoop.indexOf(array,12);
+        FindLoop findLoop = new FindLoop();
+        int result = findLoop.indexOf(array,12);
         assertThat(result, is(-1));
     }
 }
