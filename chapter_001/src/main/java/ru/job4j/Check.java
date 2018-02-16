@@ -11,6 +11,6 @@ public class Check {
     boolean contains(String origin, String sub) {
         char[] word = origin.toCharArray();
         char[] letters = sub.toCharArray();
-
+        return false;
     }
 }
