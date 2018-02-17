@@ -10,11 +10,11 @@ public class Item {
     private long create;
     public String[] comments;
 
-    public Item(String name, String description){
+    public Item(String name, String description) {
         this.name = name;
         this.description = description;
     }
-    public Item(String name, String description, long create){
+    public Item(String name, String description, long create) {
         this.name = name;
         this.description = description;
         this.create = create;
@@ -36,7 +36,7 @@ public class Item {
         return this.create;
     }
 
-    public void setId(String id){
+    public void setId(String id) {
         this.id = id;
     }
 }

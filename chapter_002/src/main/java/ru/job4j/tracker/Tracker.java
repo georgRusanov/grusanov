@@ -36,7 +36,7 @@ public class Tracker {
      * Так как у заявки нет уникальности полей, имени и описание. Для идентификации нам нужен уникальный ключ.
      * @return Уникальный ключ.
      */
-    private String generateId(){
+    private String generateId() {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
@@ -45,7 +45,7 @@ public class Tracker {
      * @param id старой заявки
      * @param item новая заявка
      */
-    public void replace(String id, Item item){
+    public void replace(String id, Item item) {
         int index = 0;
         for (int i = 0; i != position; i++) {
             if (items[i] != null && items[i].getId().equals(id)) {
@@ -60,7 +60,7 @@ public class Tracker {
      * удаляет элемент.
      * @param id id удаляемого элемента.
      */
-    public void delete(String id){
+    public void delete(String id) {
         int index = 0;
         for (int i = 0; i != position; i++) {
             if (items[i] != null && items[i].getId().equals(id)) {
@@ -69,7 +69,7 @@ public class Tracker {
             }
         }
         System.arraycopy(items, index + 1, items, index, position - index - 1);
-        items[position-1] = null;
+        items[position - 1] = null;
         position--;
     }
 
@@ -77,7 +77,7 @@ public class Tracker {
      * Массив всех существующих объектов.
      * @return Массив всех существующих объектов.
      */
-    public Item[] getAll(){
+    public Item[] getAll() {
         Item[] result = new Item[position];
         for (int index = 0; index != position; index++) {
             result[index] = this.items[index];
@@ -90,7 +90,7 @@ public class Tracker {
      * @param key имя.
      * @return массив объектов с заданным именем.
      */
-    public Item[] findByName(String key){
+    public Item[] findByName(String key) {
         int index = 0;
         for (Item item : items) {
             if (item != null && item.getName().equals(key)) {
@@ -113,7 +113,7 @@ public class Tracker {
      * @param id id искомого итема.
      * @return искомый итем.
      */
-    public Item findById(String id){
+    public Item findById(String id) {
         Item result = null;
         for (Item item : items) {
             if (item != null && item.getId().equals(id)) {

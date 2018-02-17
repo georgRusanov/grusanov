@@ -37,12 +37,10 @@ public class StartUI {
      * Получение данных от пользователя.
      */
     private final Input input;
-
     /**
      * Хранилище заявок.
      */
     private final Tracker tracker;
-
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
@@ -52,7 +50,6 @@ public class StartUI {
         this.input = input;
         this.tracker = tracker;
     }
-
     /**
      * Основой цикл программы.
      */
