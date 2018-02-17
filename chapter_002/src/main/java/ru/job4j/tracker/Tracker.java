@@ -40,6 +40,11 @@ public class Tracker {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
+    /**
+     * Заменяет заявку на другую.
+     * @param id старой заявки
+     * @param item новая заявка
+     */
     public void replace(String id, Item item){
         int index = 0;
         for (int i = 0; i != position; i++) {
