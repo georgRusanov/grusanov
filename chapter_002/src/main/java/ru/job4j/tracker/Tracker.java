@@ -54,6 +54,7 @@ public class Tracker {
             }
         }
         items[index] = item;
+        item.setId(id);
     }
 
     /**

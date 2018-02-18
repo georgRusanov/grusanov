@@ -10,6 +10,9 @@ public class Item {
     private long create;
     public String[] comments;
 
+    public Item() {
+    }
+
     public Item(String name, String description) {
         this.name = name;
         this.description = description;

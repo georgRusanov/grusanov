@@ -86,7 +86,7 @@ public class StartUI {
         String desc = this.input.ask("Введите описание заявки :");
         Item item = new Item(name, desc);
         this.tracker.add(item);
-        System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
+        System.out.println("------------ Новая заявка с Id : " + item.getId() + "-----------");
     }
 
     /**
@@ -110,7 +110,7 @@ public class StartUI {
         String id = this.input.ask("Введите id старой заявки :");
         Item item = new Item(name, desc);
         this.tracker.replace(id, item);
-        System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
+        System.out.println("------------ Новая заявка с Id : " + item.getId() + "-----------");
     }
     /**
      * Метод реализует удаление заявки из хранилища.
