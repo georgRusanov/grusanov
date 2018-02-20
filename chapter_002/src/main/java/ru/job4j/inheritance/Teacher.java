@@ -6,6 +6,6 @@ package ru.job4j.inheritance;
  */
 public class Teacher extends Profession {
     public void teach(Student student) {
-
+        System.out.println(this.name + " выучил " + student.name);
     }
 }
