@@ -54,9 +54,15 @@ public class StartUI {
      * Основой цикл программы.
      */
     public void init() {
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
         boolean exit = false;
-        while (!exit) {
-            this.showMenu();
+        menu.fillActions();
+
+        do {
+            menu.show();
+            int key = Integer.parseInt(input.ask("Select?:"));
+            menu.select(key);
+            /**this.showMenu();
             String answer = this.input.ask("Введите пункт меню : ");
             if (ADD.equals(answer)) {
                 //добавление заявки вынесено в отдельный метод.
@@ -74,12 +80,13 @@ public class StartUI {
             } else if (EXIT.equals(answer)) {
                 exit = true;
             }
-        }
+             */
+        } while (! "y".equals(this.input.ask("Exit? (y)")));
     }
 
     /**
      * Метод реализует добавленяи новый заявки в хранилище.
-     */
+
     private void createItem() {
         System.out.println("------------ Добавление новой заявки --------------");
         String name = this.input.ask("Введите имя заявки :");
@@ -88,7 +95,7 @@ public class StartUI {
         this.tracker.add(item);
         System.out.println("------------ Новая заявка с Id : " + item.getId() + "-----------");
     }
-
+     */
     /**
      * Метод реализует отображение всех заявок.
      */
