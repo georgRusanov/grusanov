@@ -23,7 +23,7 @@ public class StartUI {
         this.tracker = tracker;
     }
     /**
-     * Основой цикл  программы.
+     * Основой цикл программы.
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
