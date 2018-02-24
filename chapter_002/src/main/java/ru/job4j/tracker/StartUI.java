@@ -5,7 +5,7 @@ package ru.job4j.tracker;
  * @since 0.1
  */
 public class StartUI {
-    private int[] ranges = new int[] {1, 2, 3, 4};
+    private int[] ranges = new int[] {0, 1, 2, 3, 4, 5};
     /**
      * Получение данных от пользователя.
      */
@@ -28,7 +28,6 @@ public class StartUI {
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        boolean exit = false;
         menu.fillActions();
 
         do {
@@ -42,6 +41,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(), new Tracker()).init();
+        new StartUI(new ValidateInput( new ConsoleInput()), new Tracker()).init();
     }
 }

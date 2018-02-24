@@ -13,7 +13,7 @@ import static org.junit.Assert.assertThat;
  * @version $Id$
  * @since 0.1
  */
-public class StubUITest {
+public class StartUITest {
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
