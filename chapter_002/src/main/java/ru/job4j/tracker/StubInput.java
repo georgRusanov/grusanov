@@ -41,6 +41,7 @@ public class StubInput implements Input {
 
     public int ask(String question, int[] range) {
         //throw new Exception("Нет такой операции");
+        System.out.println("log");
         return -1;
     }
 }
