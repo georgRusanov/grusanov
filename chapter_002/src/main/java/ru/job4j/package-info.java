@@ -1,5 +1,4 @@
 /**
-* Package for calculate task.
 *
 * @author Georg Rusanov (rusanovgeorgy@gmail.com)
 * @version $Id$
