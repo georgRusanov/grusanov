@@ -1,8 +1,8 @@
 package ru.job4j.Chess;
 
-public class ImposibleMoveException extends RuntimeException{
+public class ImpossibleMoveException extends RuntimeException{
 
-    public ImposibleMoveException(String msg){
+    public ImpossibleMoveException(String msg){
         super(msg);
     }
 }

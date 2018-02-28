@@ -8,8 +8,9 @@ import java.io.PrintStream;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-
+/*
 public class BoardTest {
+
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
@@ -27,6 +28,8 @@ public class BoardTest {
     /**
      * Проверяем создание фигуры
      */
+
+/*
     @Test
     public void whenCreateFigureThenItInFigures() {
         board.add(new Bishop(new Cell(4,4)));
@@ -35,6 +38,8 @@ public class BoardTest {
     /**
      * При правильной конечной точки хода получим массив шагов
      */
+
+/*
     @Test
     public void whenRightWayThanReceiveArrayOfMoves() {
         board.add(new Bishop(new Cell(4,4)));
@@ -48,6 +53,7 @@ public class BoardTest {
     /**
      * При неправильной конечной точки хода получим массив шагов
      */
+/*
     @Test
     public void whenRightWayThanReceiveArrayOfMoves() {
         board.add(new Bishop(new Cell(4,4)));
@@ -60,3 +66,4 @@ public class BoardTest {
 
 
 }
+*/
