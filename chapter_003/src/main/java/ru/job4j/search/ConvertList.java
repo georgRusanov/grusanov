@@ -1,6 +1,7 @@
 package ru.job4j.search;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ConvertList {
@@ -37,4 +38,16 @@ public class ConvertList {
         }
         return array;
     }
+
+    public List<Integer> convert (List<int[]> list) {
+        List<Integer> answer = new ArrayList<>();
+
+        for (int[] out : list) {
+            for (int in : out) {
+                answer.add(in);
+            }
+        }
+        return  answer;
+    }
+
 }
