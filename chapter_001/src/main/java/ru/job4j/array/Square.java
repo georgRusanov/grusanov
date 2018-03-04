@@ -11,7 +11,7 @@ public class Square {
         int[] rst = new int[bound];
 
         for (int index = 1; index <= bound; index++) {
-             rst[index - 1] = index*index;
+             rst[index - 1] = index * index;
         }
 
         return rst;

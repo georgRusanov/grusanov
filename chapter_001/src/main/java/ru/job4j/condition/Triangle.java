@@ -25,7 +25,7 @@ public class Triangle {
      */
     private double period(double ab, double ac, double bc) {
 
-        return (ab + ac + bc)/2;
+        return (ab + ac + bc) / 2;
     }
 
     /**

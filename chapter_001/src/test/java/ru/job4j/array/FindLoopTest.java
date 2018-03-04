@@ -14,18 +14,18 @@ import static org.junit.Assert.assertThat;
 public class FindLoopTest {
 
     @Test
-    public void IndexIsThree() {
+    public void indexIsThree() {
         int[] array = {1, 2, 5, 6, 7};
         FindLoop findLoop = new FindLoop();
-        int result = findLoop.indexOf(array,6);
+        int result = findLoop.indexOf(array, 6);
         assertThat(result, is(3));
     }
 
     @Test
-    public void IndexIsMinusOne() {
+    public void indexIsMinusOne() {
         int[] array = {1, 2, 5, 6, 7};
         FindLoop findLoop = new FindLoop();
-        int result = findLoop.indexOf(array,12);
+        int result = findLoop.indexOf(array, 12);
         assertThat(result, is(-1));
     }
 }

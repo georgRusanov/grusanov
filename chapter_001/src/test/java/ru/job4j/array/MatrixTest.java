@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 public class MatrixTest {
 
     @Test
-    public void WhenFourAndFourThanSixteen() {
+    public void whenFourAndFourThanSixteen() {
         Matrix matrix = new Matrix();
         int[][] result = matrix.multiple(5);
         int expected = 16;
@@ -23,7 +23,7 @@ public class MatrixTest {
     }
     
     @Test
-    public void WhenEightAndNinetThanSeventyTwo() {
+    public void whenEightAndNinetThanSeventyTwo() {
         Matrix matrix = new Matrix();
         int[][] result = matrix.multiple(9);
         int expected = 72;

@@ -7,7 +7,7 @@ package ru.job4j.array;
  */
 public class BubbleSort {
 
-    public int[] sort(int[] array){
+    public int[] sort(int[] array) {
         int numOfMoves, temp;
         for (int indexOut = 0; indexOut != array.length - 1; indexOut++) {
             numOfMoves = 0;

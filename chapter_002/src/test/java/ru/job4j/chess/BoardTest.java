@@ -1,4 +1,4 @@
-package ru.job4j.Chess;
+package ru.job4j.chess;
 
 public class BoardTest {
 }

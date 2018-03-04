@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class ArrayDuplicate {
 
-    public String[] remove(String[] array){
+    public String[] remove(String[] array) {
         int length = array.length;
         for (int out = 0; out != length; out++) {
             for (int in = out + 1; in != length; in++) {

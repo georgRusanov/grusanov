@@ -23,7 +23,7 @@ public class Max {
      * @param third третье число
      * @return макс из трех чисел
      */
-    public int max(int first, int second, int third){
+    public int max(int first, int second, int third) {
         return max(max(first, second), third);
     }
 }

@@ -28,7 +28,7 @@ public class MaxTest {
     @Test
     public void whenSecondbiggerThanFirstAndThird() {
         Max maxim = new Max();
-        int result = maxim.max(3,6, 2);
+        int result = maxim.max(3, 6, 2);
         assertThat(result, is(6));
     }
 }
