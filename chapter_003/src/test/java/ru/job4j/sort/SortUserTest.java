@@ -26,4 +26,42 @@ public class SortUserTest {
         assertThat(names[0].getName(), is("ioan"));
     }
 
+    @Test
+    public void whenShotNamesFirst() {
+        List<User> list = new ArrayList<>();
+        list.addAll(Arrays.asList(
+                new User("Сергей", 25),
+                new User("Иван", 30),
+                new User("Сергей", 20),
+                new User("Ива", 25)
+        ));
+        List<User> sortedList = new SortUser().sortNameLength(list);
+        String[] result = new String[list.size()];
+        int i = 0;
+        for (User user : sortedList) {
+            result[i++] = user.toString();
+        }
+        String[] expected = {"Ива", "Иван", "Сергей", "Сергей"};
+        assertThat(result, is(expected));
+    }
+
+    @Test
+    public void whenSortByNamesAndAge() {
+        List<User> list = new ArrayList<>();
+        list.addAll(Arrays.asList(
+                new User("Сергей", 25),
+                new User("Иван", 30),
+                new User("Сергей", 20),
+                new User("Иван", 25)
+        ));
+        List<User> sortedList = new SortUser().sortByAllFields(list);
+        int[] result = new int[list.size()];
+        int i = 0;
+        for (User user : sortedList) {
+            result[i++] = user.getAge();
+        }
+        int[] expected = {25, 30, 20, 25};
+        assertThat(result, is(expected));
+    }
+
 }
