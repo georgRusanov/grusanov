@@ -55,6 +55,7 @@ public class MenuTracker {
     private Input input;
     private Tracker tracker;
     private UserAction[] actions = new UserAction[6];
+    private int[] ranges;
 
     public  MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -68,6 +69,19 @@ public class MenuTracker {
         this.actions[3] = this.new DeleteItem(3, "delete item");
         this.actions[4] = new FindById(4, "find item by id");
         this.actions[5] = new FindByName(5, "find item by name");
+
+        int actionsQuantity = 0;
+        for (UserAction action : this.actions) {
+            actionsQuantity = action != null ? ++actionsQuantity : actionsQuantity;
+        }
+        this.ranges = new int[actionsQuantity];
+        for (int i = 0; i < actionsQuantity; i++) {
+            this.ranges[i] = this.actions[i].key();
+        }
+    }
+
+    public int[] getRanges() {
+        return this.ranges;
     }
 
     public void select(int key) {

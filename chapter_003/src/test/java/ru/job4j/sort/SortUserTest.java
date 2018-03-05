@@ -63,5 +63,4 @@ public class SortUserTest {
         int[] expected = {25, 30, 20, 25};
         assertThat(result, is(expected));
     }
-
 }

@@ -59,7 +59,7 @@ public class StartUITest {
         Item item1 = tracker.add(new Item("test name1", "desc1"));
         Input input = new StubInput(new String[]{"1", "6"});
         new StartUI(input, tracker).init();
-        assertThat(true, is(new String(out.toByteArray()).contains("Заявка: test name\nЗаявка: test name1")));
+        assertThat(true, is(new String(out.toByteArray()).contains(String.format("%s. %s", item.getId(), item.getName()))));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class StartUITest {
         Item item1 = tracker.add(new Item("test name1", "desc1"));
         Input input = new StubInput(new String[]{"4", item.getId(), "6"});
         new StartUI(input, tracker).init();
-        assertThat(true, is(new String(out.toByteArray()).contains("Заявка: " + item.getName())));
+        assertThat(true, is(new String(out.toByteArray()).contains(String.format("%s. %s", item.getId(), item.getName()))));
     }
 
     @Test
