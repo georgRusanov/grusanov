@@ -30,7 +30,7 @@ public class StartUITest {
 
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
-        Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});
+        Input input = new StubInput(new String[]{"0", "test name", "desc", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.getAll()[0].getName(), is("test name"));
     }
@@ -38,7 +38,7 @@ public class StartUITest {
     @Test
     public void whenUpdateThenTrackerHasUpdatedValue() {
         Item item = tracker.add(new Item("test name1", "desc1"));
-        Input input = new StubInput(new String[]{"2", "test name", "desc", item.getId(), "6"});
+        Input input = new StubInput(new String[]{"2", item.getId(), "test name", "desc", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findById(item.getId()).getName(), is("test name"));
     }
@@ -48,7 +48,7 @@ public class StartUITest {
         Item item = tracker.add(new Item("test name", "desc"));
         Item item1 = tracker.add(new Item("test name1", "desc1"));
         Item item2 = tracker.add(new Item("test name2", "desc2"));
-        Input input = new StubInput(new String[]{"3", item1.getId(), "6"});
+        Input input = new StubInput(new String[]{"3", item1.getId(), "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.getAll()[1].getName(), is("test name2"));
     }
@@ -57,7 +57,7 @@ public class StartUITest {
     public void whenShowAllThenTrackerPrintTwoNames() {
         Item item = tracker.add(new Item("test name", "desc"));
         Item item1 = tracker.add(new Item("test name1", "desc1"));
-        Input input = new StubInput(new String[]{"1", "6"});
+        Input input = new StubInput(new String[]{"1", "y"});
         new StartUI(input, tracker).init();
         assertThat(true, is(new String(out.toByteArray()).contains(String.format("%s. %s", item.getId(), item.getName()))));
     }
@@ -66,7 +66,7 @@ public class StartUITest {
     public void whenFindByIdThenTrackerPrintOneName() {
         Item item = tracker.add(new Item("test name", "desc"));
         Item item1 = tracker.add(new Item("test name1", "desc1"));
-        Input input = new StubInput(new String[]{"4", item.getId(), "6"});
+        Input input = new StubInput(new String[]{"4", item.getId(), "y"});
         new StartUI(input, tracker).init();
         assertThat(true, is(new String(out.toByteArray()).contains(String.format("%s. %s", item.getId(), item.getName()))));
     }
@@ -75,8 +75,8 @@ public class StartUITest {
     public void whenFindByNameThenTrackerPrintOneName() {
         Item item = tracker.add(new Item("test name", "desc"));
         Item item1 = tracker.add(new Item("test name1", "desc1"));
-        Input input = new StubInput(new String[]{"5", item.getName(), "6"});
+        Input input = new StubInput(new String[]{"5", item.getName(), "y"});
         new StartUI(input, tracker).init();
-        assertThat(true, is(new String(out.toByteArray()).contains("Заявка: " + item.getName())));
+        assertThat(true, is(new String(out.toByteArray()).contains(String.format("%s. %s", item.getId(), item.getName()))));
     }
 }
