@@ -1,7 +1,6 @@
 package ru.job4j.search;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ConvertList {
@@ -33,8 +32,10 @@ public class ConvertList {
                 column++;
             }
         }
-        for (int i = size % rows + 1; i < size / rows; i++) {
-            array[row][i] = 0;
+        if (size % rows != 0) {
+            for (int i = size % rows + 1; i < size / rows; i++) {
+                array[row][i] = 0;
+            }
         }
         return array;
     }

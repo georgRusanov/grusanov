@@ -3,10 +3,11 @@ package ru.job4j.search;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class ConvertListTest {
 
@@ -33,6 +34,15 @@ public class ConvertListTest {
         for (Integer i = 1; i != 7; i++) {
             expected.add(i);
         }
+        assertThat(result, is(expected));
+    }
+
+    @Test
+    public void listToTwoDimensionalArray(){
+        ConvertList convert = new ConvertList();
+        int[][] expected = new int[][]{{1,2},{3,4}};
+        List<Integer> origin = Arrays.asList(1,2,3,4);
+        int[][] result = convert.toArray(origin,2);
         assertThat(result, is(expected));
     }
 }
