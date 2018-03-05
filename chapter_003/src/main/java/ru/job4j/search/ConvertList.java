@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ConvertList {
 
-    public List<Integer> toList (int[][] array) {
+    public List<Integer> toList(int[][] array) {
         List<Integer> list = new ArrayList<>();
         for (int[] out : array) {
             for (int in : out) {
@@ -15,7 +15,7 @@ public class ConvertList {
         return list;
     }
 
-    public int[][] toArray (List<Integer> list, int rows) {
+    public int[][] toArray(List<Integer> list, int rows) {
         int size = list.size();
         if (size % rows != 0) {
             size += (rows - size % rows);
@@ -40,7 +40,7 @@ public class ConvertList {
         return array;
     }
 
-    public List<Integer> convert (List<int[]> list) {
+    public List<Integer> convert(List<int[]> list) {
         List<Integer> answer = new ArrayList<>();
 
         for (int[] out : list) {

@@ -12,13 +12,12 @@ public class SortUser {
         return users;
     }
 
-    public List<User> sortNameLength (List<User> list) {
-
+    public List<User> sortNameLength(List<User> list) {
         Collections.sort(list, new SortNameLength());
         return list;
     }
 
-    public List<User> sortByAllFields (List<User> list) {
+    public List<User> sortByAllFields(List<User> list) {
         Collections.sort(list, new SortByAllFields());
         return list;
     }

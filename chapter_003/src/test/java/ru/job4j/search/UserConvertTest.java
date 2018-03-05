@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class UserConvertTest {
     @Test
-    public void WhenListOfArrayToList() {
+    public void whenListOfArrayToList() {
         List<User> list = new ArrayList<>();
         User user1 = new User(15, "asd", "qwe");
         User user2 = new User(12, "adsfd", "qsdfswe");

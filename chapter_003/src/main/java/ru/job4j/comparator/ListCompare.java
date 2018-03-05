@@ -11,7 +11,7 @@ public class ListCompare implements Comparator<String> {
         int leftLength = left.length();
         int rightLength = right.length();
         int minLength = leftLength > rightLength ? rightLength : leftLength;
-        for (int i = 0; i < minLength; i++){
+        for (int i = 0; i < minLength; i++) {
             if (leftArr[i] > rightArr[i]) {
                 answer = 1;
                 break;
