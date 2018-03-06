@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Georg Rusanov (rusanovgeorgy@gmail.com)
  * @version $Id$
@@ -43,7 +46,7 @@ class FindByName extends BaseAction {
 
     public void execute(Input input, Tracker tracker) {
         String name = input.ask("Введите имя заявки :");
-        Item[] items = tracker.findByName(name);
+        List<Item> items = tracker.findByName(name);
         for (Item item : items) {
             System.out.println(String.format("%s. %s", item.getId(), item.getName()));
         }
@@ -54,8 +57,8 @@ public class MenuTracker {
 
     private Input input;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[6];
-    private int[] ranges;
+    private List<UserAction> actions = new ArrayList<>();
+    private List<Integer> ranges = new ArrayList<>();
 
     public  MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -63,36 +66,29 @@ public class MenuTracker {
     }
 
     public void fillActions() {
-        this.actions[0] = this.new AddItem(0, "add item");
-        this.actions[1] = new MenuTracker.ShowItems(1, "show items");
-        this.actions[2] = new EditItem(2, "edit item");
-        this.actions[3] = this.new DeleteItem(3, "delete item");
-        this.actions[4] = new FindById(4, "find item by id");
-        this.actions[5] = new FindByName(5, "find item by name");
+        this.actions.add(this.new AddItem(0, "add item"));
+        this.actions.add(new MenuTracker.ShowItems(1, "show items"));
+        this.actions.add(new EditItem(2, "edit item"));
+        this.actions.add(this.new DeleteItem(3, "delete item"));
+        this.actions.add(new FindById(4, "find item by id"));
+        this.actions.add(new FindByName(5, "find item by name"));
 
-        int actionsQuantity = 0;
-        for (UserAction action : this.actions) {
-            actionsQuantity = action != null ? ++actionsQuantity : actionsQuantity;
-        }
-        this.ranges = new int[actionsQuantity];
-        for (int i = 0; i < actionsQuantity; i++) {
-            this.ranges[i] = this.actions[i].key();
+        for (UserAction action : actions) {
+            this.ranges.add(action.key());
         }
     }
 
-    public int[] getRanges() {
+    public List<Integer> getRanges() {
         return this.ranges;
     }
 
     public void select(int key) {
-        this.actions[key].execute(this.input, this.tracker);
+        this.actions.get(key).execute(this.input, this.tracker);
     }
 
-    public  void show() {
+    public void show() {
         for (UserAction action : this.actions) {
-            if (action != null) {
                 System.out.println(action.info());
-            }
         }
     }
 

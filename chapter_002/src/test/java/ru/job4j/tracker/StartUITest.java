@@ -32,7 +32,7 @@ public class StartUITest {
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Input input = new StubInput(new String[]{"0", "test name", "desc", "y"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.getAll()[0].getName(), is("test name"));
+        assertThat(tracker.getAll().get(0).getName(), is("test name"));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class StartUITest {
         Item item2 = tracker.add(new Item("test name2", "desc2"));
         Input input = new StubInput(new String[]{"3", item1.getId(), "y"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.getAll()[1].getName(), is("test name2"));
+        assertThat(tracker.getAll().get(1).getName(), is("test name2"));
     }
 
     @Test

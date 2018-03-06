@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 /**
  * @author Georg Rusanov (rusanovgeorgy@gmail.com)
@@ -10,12 +12,7 @@ public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    private final Item[] items = new Item[100];
-
-    /**
-     * Указатель ячейки для новой заявки.
-     */
-    private int position = 0;
+    private final List<Item> items = new ArrayList<>();
 
     /**
      * Необходимо для создания id
@@ -27,7 +24,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        this.items.add(item);
         return item;
     }
 
@@ -46,15 +43,13 @@ public class Tracker {
      * @param item новая заявка
      */
     public void replace(String id, Item item) {
-        int index = 0;
-        for (int i = 0; i != position; i++) {
-            if (items[i] != null && items[i].getId().equals(id)) {
-                index = i;
+        for (int index = 0; index < items.size(); index++) {
+            if (items.get(index).getId().equals(id)) {
+                items.set(index, item);
+                item.setId(id);
                 break;
             }
         }
-        items[index] = item;
-        item.setId(id);
     }
 
     /**
@@ -62,28 +57,20 @@ public class Tracker {
      * @param id id удаляемого элемента.
      */
     public void delete(String id) {
-        int index = 0;
-        for (int i = 0; i != position; i++) {
-            if (items[i] != null && items[i].getId().equals(id)) {
-                index = i;
+        for (int i = 0; i != items.size(); i++) {
+            if (items.get(i).getId().equals(id)) {
+                items.remove(i);
                 break;
             }
         }
-        System.arraycopy(items, index + 1, items, index, position - index - 1);
-        items[position - 1] = null;
-        position--;
     }
 
     /**
      * Массив всех существующих объектов.
      * @return Массив всех существующих объектов.
      */
-    public Item[] getAll() {
-        Item[] result = new Item[position];
-        for (int index = 0; index != position; index++) {
-            result[index] = this.items[index];
-        }
-        return result;
+    public List<Item> getAll() {
+        return items;
     }
 
     /**
@@ -91,19 +78,11 @@ public class Tracker {
      * @param key имя.
      * @return массив объектов с заданным именем.
      */
-    public Item[] findByName(String key) {
-        int index = 0;
+    public List<Item> findByName(String key) {
+        List<Item> result = new ArrayList<>();
         for (Item item : items) {
-            if (item != null && item.getName().equals(key)) {
-                index++;
-            }
-        }
-        Item[] result = new Item[index];
-        index = 0;
-        for (Item item : items) {
-            if (item != null && item.getName().equals(key)) {
-                result[index] = item;
-                index++;
+            if (item.getName().equals(key)) {
+                result.add(item);
             }
         }
         return result;
@@ -117,7 +96,7 @@ public class Tracker {
     public Item findById(String id) {
         Item result = null;
         for (Item item : items) {
-            if (item != null && item.getId().equals(id)) {
+            if (item.getId().equals(id)) {
                 result = item;
                 break;
             }
