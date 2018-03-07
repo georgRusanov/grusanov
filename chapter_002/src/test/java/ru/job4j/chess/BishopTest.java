@@ -1,61 +1,52 @@
 package ru.job4j.chess;
 
-/*
-public class BoardTest {
+import org.junit.Test;
 
-    private final PrintStream stdout = System.out;
-    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
-    @Before
-    public void loadOutput() {
-        System.setOut(new PrintStream(this.out));
+public class BishopTest {
+
+
+    public static boolean equals(Cell[] first, Cell[] second) {
+        boolean answer = true;
+        for (int i = 0; i < first.length; i++) {
+            if (first[i].x != second[i].x || first[i].y != second[i].y) {
+                answer = false;
+            }
+        }
+        return answer;
     }
-    Board board= new Board();
 
-    @After
-    public void backOutput() {
-        System.setOut(this.stdout);
-    }
-
-    /**
-     * Проверяем создание фигуры
-     */
-
-/*
     @Test
-    public void whenCreateFigureThenItInFigures() {
-        board.add(new Bishop(new Cell(4,4)));
-        assertThat(board.figures[0].position.x, is(4));
+    public void whenTrueXYPlus() {
+        Bishop bishop = new Bishop(4, 4);
+        Cell[] expected = {new Cell(5, 5), new Cell(6, 6)};
+        Cell[] result = bishop.way(bishop.position, new Cell(6, 6));
+        assertThat(true,is(BishopTest.equals(result, expected)));
     }
-    /**
-     * При правильной конечной точки хода получим массив шагов
-     */
 
-/*
     @Test
-    public void whenRightWayThanReceiveArrayOfMoves() {
-        board.add(new Bishop(new Cell(4,4)));
-        Cell[] way = board.figures[0].way(board.figures[0].position, new Cell(6,6));
-        Cell[] expected = new Cell[] {new Cell(5,5), new Cell(6,6)};
-        assertThat(
-                String.format("%d %d %d %d", expected[0].x, expected[0].y, expected[1].x, expected[1].y),
-                is(String.format("%d %d %d %d", way[0].x, way[0].y, way[1].x, way[1].y)));
+    public void whenTrueXYMinus() {
+        Bishop bishop = new Bishop(5, 4);
+        Cell[] expected = {new Cell(4, 3), new Cell(3, 2)};
+        Cell[] result = bishop.way(bishop.position, new Cell(3, 2));
+        assertThat(true,is(BishopTest.equals(result, expected)));
     }
 
-    /**
-     * При неправильной конечной точки хода получим массив шагов
-     */
-/*
     @Test
-    public void whenRightWayThanReceiveArrayOfMoves() {
-        board.add(new Bishop(new Cell(4,4)));
-        Cell[] way = board.figures[0].way(board.figures[0].position, new Cell(6,6));
-        Cell[] expected = new Cell[] {new Cell(5,5), new Cell(6,6)};
-        assertThat(
-                String.format("%d %d %d %d", expected[0].x, expected[0].y, expected[1].x, expected[1].y),
-                is(String.format("%d %d %d %d", way[0].x, way[0].y, way[1].x, way[1].y)));
+    public void whenTrueXPlusYMinus() {
+        Bishop bishop = new Bishop(4, 4);
+        Cell[] expected = {new Cell(5, 3), new Cell(6, 2)};
+        Cell[] result = bishop.way(bishop.position, new Cell(6, 2));
+        assertThat(true,is(BishopTest.equals(result, expected)));
     }
 
-
+    @Test
+    public void whenTrueXMinusYPlus() {
+        Bishop bishop = new Bishop(4, 4);
+        Cell[] expected = {new Cell(3, 5), new Cell(2, 6)};
+        Cell[] result = bishop.way(bishop.position, new Cell(2, 6));
+        assertThat(true,is(BishopTest.equals(result, expected)));
+    }
 }
-*/
