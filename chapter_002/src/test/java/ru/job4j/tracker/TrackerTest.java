@@ -65,7 +65,7 @@ public class TrackerTest {
         Item second = new Item("test2", "testDescription2", 1234L);
         tracker.add(second);
         List<Item> result = tracker.getAll();
-        List<Item> expected = Arrays.asList(first,second);
+        List<Item> expected = Arrays.asList(first, second);
         assertThat(result, is(expected));
     }
     /**
@@ -81,7 +81,7 @@ public class TrackerTest {
         Item third = new Item("test1", "testDescription2", 1234L);
         tracker.add(third);
         List<Item> result = tracker.findByName("test1");
-        List<Item> expected = Arrays.asList(first,third);
+        List<Item> expected = Arrays.asList(first, third);
         assertThat(result, is(expected));
     }
 

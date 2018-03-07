@@ -20,7 +20,7 @@ public class BoardTest {
     public void loadOutput() {
         System.setOut(new PrintStream(this.out));
     }
-    Board board= new Board();
+    Board board = new Board();
 
     @After
     public void backOutput() {

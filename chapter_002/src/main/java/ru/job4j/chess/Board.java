@@ -5,7 +5,7 @@ public class Board {
     Figure[] figures = new Figure[32];
     int position = 0;
 
-    public void add(Figure figure){
+    public void add(Figure figure) {
         this.figures[position++] = figure;
     }
 

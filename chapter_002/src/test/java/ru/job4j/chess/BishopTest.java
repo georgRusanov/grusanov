@@ -23,7 +23,7 @@ public class BishopTest {
         Bishop bishop = new Bishop(4, 4);
         Cell[] expected = {new Cell(5, 5), new Cell(6, 6)};
         Cell[] result = bishop.way(bishop.position, new Cell(6, 6));
-        assertThat(true,is(BishopTest.equals(result, expected)));
+        assertThat(true, is(BishopTest.equals(result, expected)));
     }
 
     @Test
@@ -31,7 +31,7 @@ public class BishopTest {
         Bishop bishop = new Bishop(5, 4);
         Cell[] expected = {new Cell(4, 3), new Cell(3, 2)};
         Cell[] result = bishop.way(bishop.position, new Cell(3, 2));
-        assertThat(true,is(BishopTest.equals(result, expected)));
+        assertThat(true, is(BishopTest.equals(result, expected)));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class BishopTest {
         Bishop bishop = new Bishop(4, 4);
         Cell[] expected = {new Cell(5, 3), new Cell(6, 2)};
         Cell[] result = bishop.way(bishop.position, new Cell(6, 2));
-        assertThat(true,is(BishopTest.equals(result, expected)));
+        assertThat(true, is(BishopTest.equals(result, expected)));
     }
 
     @Test
@@ -47,6 +47,6 @@ public class BishopTest {
         Bishop bishop = new Bishop(4, 4);
         Cell[] expected = {new Cell(3, 5), new Cell(2, 6)};
         Cell[] result = bishop.way(bishop.position, new Cell(2, 6));
-        assertThat(true,is(BishopTest.equals(result, expected)));
+        assertThat(true, is(BishopTest.equals(result, expected)));
     }
 }
