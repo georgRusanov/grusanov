@@ -23,7 +23,7 @@ public class SortUserTest {
         ));
         Set<User> set = new SortUser().sort(list);
         User[] names = set.toArray(new User[set.size()]);
-        assertThat(names[0].getName(), is("ioan"));
+        assertThat(set.iterator().next().getName(), is("ioan"));
     }
 
     @Test
