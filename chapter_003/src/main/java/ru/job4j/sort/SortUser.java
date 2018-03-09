@@ -27,7 +27,7 @@ class SortNameLength implements Comparator<User> {
 
     @Override
     public int compare(User obj1, User obj2) {
-        return Integer.compare(obj1.getName().length(),obj2.getName().length());
+        return Integer.compare(obj1.getName().length(), obj2.getName().length());
     }
 }
 
