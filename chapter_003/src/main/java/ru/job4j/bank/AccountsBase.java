@@ -8,6 +8,10 @@ import java.util.Map;
 public class AccountsBase {
     private Map<User, List<Account>> base = new HashMap<>();
 
+    public Map<User, List<Account>> getBase() {
+        return base;
+    }
+
     public void addUser(User user) {
         base.putIfAbsent(user, new ArrayList<Account>());
     }
@@ -36,32 +40,14 @@ public class AccountsBase {
         boolean result = false;
         User src = getUser(srcPassport);
         User dest = getUser(destPassport);
-        Account srcAcc = null;
-        Account destAcc = null;
-        for (Account acc : base.get(src)) {
-            if (acc.getRequisites().equals(srcRequisite)) {
-                srcAcc = acc;
-                result = true;
-                break;
-            }
-        }
-        if (result) {
-            result = false;
-            for (Account acc : base.get(dest)) {
-                if (acc.getRequisites().equals(destRequisite)) {
-                    destAcc = acc;
-                    result = true;
-                    break;
-                }
-            }
-        }
-        if (result) {
-            if (srcAcc.getValue() > amount) {
+        Account srcAcc = AccountsBase.accountExist(base, src, srcRequisite);
+        Account destAcc = AccountsBase.accountExist(base, dest, destRequisite);
+        if (srcAcc != null && destAcc != null) {
+            if (amount > 0 && srcAcc.getValue() > amount) {
                 srcAcc.setValue(srcAcc.getValue() - amount);
                 destAcc.setValue(destAcc.getValue() + amount);
+                result = true;
             }
-        } else {
-            result = false;
         }
         return result;
     }
@@ -71,6 +57,17 @@ public class AccountsBase {
         for (User user : base.keySet()) {
             if (user.getPassport().equals(passport)) {
                 result = user;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public static Account accountExist(Map<User, List<Account>> base, User user, String requisite) {
+        Account result = null;
+        for (Account account : base.get(user)) {
+            if (account.getRequisites().equals(requisite)) {
+                result = account;
                 break;
             }
         }

@@ -14,10 +14,7 @@ public class User {
 
     public boolean eqauls(User user) {
         boolean answer = false;
-        if (this == user) {
-            answer = true;
-        }
-        if (this.name.equals(user.name) && this.passport.equals(user.passport)) {
+        if (this == user || this.name.equals(user.name) && this.passport.equals(user.passport)) {
             answer = true;
         }
         return answer;
@@ -25,10 +22,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = 1;
-        for (char letter : this.passport.toCharArray()) {
-            result += (int) letter;
-        }
-        return result;
+        return this.passport.hashCode();
     }
 }
