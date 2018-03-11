@@ -3,7 +3,7 @@ package ru.job4j.iterator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class MatrixIterator implements Iterator{
+public class MatrixIterator implements Iterator {
     private int[][] matrix;
     private int out = 0, in = -1;
 
