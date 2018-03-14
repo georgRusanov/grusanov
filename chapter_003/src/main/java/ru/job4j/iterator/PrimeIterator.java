@@ -7,20 +7,23 @@ public class PrimeIterator implements Iterator{
 
     private int[] array;
     private int[] sieve;
-    int index = 0;
+    private int index = 0;
 
     public PrimeIterator(int[] array) {
         this.array = array;
-        this.sieve = new int[maxElement(array) + 1];
-        fillSieve(this.sieve);
     }
 
     @Override
     public boolean hasNext() {
+        if (sieve == null) {
+            this.sieve = new int[maxElement(array) + 1];
+            fillSieve(this.sieve);
+        }
         boolean answer = false;
         for (int i = this.index; i < this.array.length; i++) {
             if (this.sieve[this.array[i]] == 1) {
                 answer = true;
+                index = i;
                 break;
             }
         }
@@ -29,20 +32,13 @@ public class PrimeIterator implements Iterator{
 
     @Override
     public Object next() {
-        if (hasNext()) {
-            for (int i = this.index; i < this.array.length; i++) {
-                if (this.sieve[this.array[i]] == 1) {
-                    this.index = i;
-                    break;
-                }
-            }
-        } else {
+        if (!hasNext()) {
             throw new NoSuchElementException("Больше нет элементов");
         }
         return array[index++];
     }
 
-    public int maxElement(int[] array) {
+    private int maxElement(int[] array) {
         int max = 0;
         for(int i : array) {
             max = i > max ? i : max;
@@ -50,7 +46,7 @@ public class PrimeIterator implements Iterator{
         return max;
     }
 
-    public void fillSieve(int[] array) {
+    private void fillSieve(int[] array) {
         int size = array.length - 1;
         array[2] = 1;
         for (int i = 3; i <= size; i +=2) {
