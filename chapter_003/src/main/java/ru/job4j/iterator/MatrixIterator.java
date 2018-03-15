@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 
 public class MatrixIterator implements Iterator {
     private int[][] matrix;
-    private int out = 0, in = -1;
+    private int out = 0, in = 0;
 
     public MatrixIterator(int[][] matrix) {
         this.matrix = matrix;
@@ -13,7 +13,14 @@ public class MatrixIterator implements Iterator {
 
     @Override
     public boolean hasNext() {
-        return !(out + 1 == matrix.length && in + 1 == matrix[out].length);
+        boolean answer = true;
+        if (in == matrix[out].length) {
+            in = 0;
+            if (++out == matrix.length) {
+                answer = false;
+            }
+        }
+        return answer;
     }
 
     @Override
@@ -21,15 +28,9 @@ public class MatrixIterator implements Iterator {
         if (matrix.length == 0) {
             throw new NoSuchElementException("Пустой массив");
         }
-        if (in + 1 >= matrix[out].length) {
-            if (out + 1 >= matrix.length) {
-                throw new NoSuchElementException("Больше нет элементов");
-            }
-            in = 0;
-            out++;
-        } else {
-            in++;
+        if (!hasNext()) {
+            throw new NoSuchElementException("Больше нет элементов");
         }
-        return matrix[out][in];
+        return matrix[out][in++];
     }
 }
