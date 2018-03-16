@@ -8,30 +8,13 @@ public class Bishop extends Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
-        if (Math.abs(dest.x - source.x) != Math.abs(dest.y - source.y)) {
+        int xAbs = Math.abs(dest.x - source.x);
+        if (xAbs != Math.abs(dest.y - source.y)) {
             throw new ImpossibleMoveException("Слон так не ходит");
         } else {
-            Cell[] route = new Cell[Math.abs(dest.x - source.x)];
-            if (dest.x > source.x) {
-                if (dest.y > source.y) {
-                    for (int i = 0; i < route.length; i++) {
-                        route[i] = new Cell(source.x + 1 + i, source.y + 1 + i);
-                    }
-                } else {
-                    for (int i = 0; i < route.length; i++) {
-                        route[i] = new Cell(source.x + 1 + i, source.y - 1 - i);
-                    }
-                }
-            } else {
-                if (dest.y > source.y) {
-                    for (int i = 0; i < route.length; i++) {
-                        route[i] = new Cell(source.x - 1 - i, source.y + 1 + i);
-                    }
-                } else {
-                    for (int i = 0; i < route.length; i++) {
-                        route[i] = new Cell(source.x - 1 - i, source.y - 1 - i);
-                    }
-                }
+            Cell[] route = new Cell[xAbs];
+            for (int i = 0; i < xAbs; i++) {
+                route[i] = new Cell(dest.x - (xAbs - i - 1) * Integer.compare(dest.x, source.x), dest.y - (xAbs - i - 1) * Integer.compare(dest.y, source.y));
             }
             return route;
         }
