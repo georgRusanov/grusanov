@@ -23,7 +23,7 @@ public class SimpleArrayTest {
 
     @Test
     public void setTest() {
-        array.set(1,3);
+        array.set(1, 3);
         assertThat(array.iterator().next(), is(1));
         assertThat(array.iterator().next(), is(3));
     }

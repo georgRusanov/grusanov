@@ -12,7 +12,7 @@ public abstract class AbstractStore<T extends Base> implements Store {
     @Override
     public boolean replace(String id, Base model) {
         boolean answer = false;
-        if(findIndex(id) != -1) {
+        if (findIndex(id) != -1) {
             array.set(findIndex(id), (T) model);
             answer = true;
         }
@@ -22,7 +22,7 @@ public abstract class AbstractStore<T extends Base> implements Store {
     @Override
     public boolean delete(String id) {
         boolean answer = false;
-        if(findIndex(id) != -1) {
+        if (findIndex(id) != -1) {
             array.delete(findIndex(id));
             answer = true;
         }

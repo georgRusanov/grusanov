@@ -16,7 +16,7 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public  void add(T model) {
-        if(index == objects.length) {
+        if (index == objects.length) {
             System.arraycopy(objects, 0, objects, 0, objects.length * 3 / 2 + 1);
         }
         this.objects[this.index++] = model;
