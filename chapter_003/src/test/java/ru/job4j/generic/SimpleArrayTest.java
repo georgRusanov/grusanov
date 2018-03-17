@@ -1,4 +1,4 @@
-package ru.job4j.Generic;
+package ru.job4j.generic;
 
 import org.junit.Before;
 import org.junit.Test;
