@@ -1,15 +1,16 @@
-package ru.job4j.generic;
+package ru.job4j.list;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ConcurrentModificationException;
 import java.util.NoSuchElementException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class SimpleArrayTest {
-    private SimpleArray<Integer> array = new SimpleArray<Integer>();
+public class ArrayContainerTest {
+    private ArrayContainer<Integer> array = new ArrayContainer<>();
 
     @Before
     public void addElement() {
@@ -24,19 +25,6 @@ public class SimpleArrayTest {
     }
 
     @Test
-    public void setTest() {
-        array.set(1, 3);
-        assertThat(array.iterator().next(), is(1));
-        assertThat(array.iterator().next(), is(3));
-    }
-
-    @Test
-    public void deleteTest() {
-        array.delete(0);
-        assertThat(array.iterator().next(), is(2));
-    }
-
-    @Test
     public void get() {
         assertThat(array.get(1), is(2));
     }
@@ -47,4 +35,12 @@ public class SimpleArrayTest {
         assertThat(array.iterator().next(), is(2));
         array.iterator().next();
     }
+
+    @Test(expected = ConcurrentModificationException.class)
+    public void modificationExceptionTest() {
+        assertThat(array.iterator().next(), is(1));
+        array.add(3);
+        array.iterator().next();
+    }
+
 }

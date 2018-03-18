@@ -39,7 +39,7 @@ public class SimpleArray<T> implements Iterable<T> {
         return new Iterator<T>() {
             @Override
             public boolean hasNext() {
-                return position <= index;
+                return position < index;
             }
 
             @Override
