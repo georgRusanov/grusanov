@@ -27,11 +27,43 @@ public class LinkedContainer<T> implements Iterable<T> {
     public T get(int index) {
         T answer = null;
         if (index < size) {
-            for (int i = 0; i <=index; i++) {
+            Node temp = iteratorNode;
+            iteratorNode = new Node(null, null, first);
+            for (int i = 0; i <= index; i++) {
                 answer = iterator().next();
             }
+            iteratorNode = temp;
         }
         return answer;
+    }
+
+    public void delete(int index) {
+        if (index < size) {
+            if (size == 1) {
+                first = last = null;
+
+            } else {
+                Node deleted = first;
+                for (int i = 1; i <= index; i++) {
+                    deleted = deleted.next;
+                }
+                if (index == 0) {
+                    deleted.next.prev = null;
+                    first = deleted.next;
+                    deleted = null;
+                } else if (index == size - 1) {
+                    deleted.prev.next = null;
+                    last = deleted.prev;
+                    deleted = null;
+                } else {
+                    deleted.prev.next = deleted.next;
+                    deleted.next.prev = deleted.prev;
+                    deleted = null;
+                }
+            }
+            size--;
+            modCount++;
+        }
     }
 
     @Override

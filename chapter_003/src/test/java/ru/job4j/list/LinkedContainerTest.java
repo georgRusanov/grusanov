@@ -26,7 +26,12 @@ public class LinkedContainerTest {
 
     @Test
     public void get() {
+        container.add(3);
+        container.add(4);
         assertThat(container.get(1), is(2));
+        assertThat(container.get(1), is(2));
+        assertThat(container.iterator().next(), is(1));
+        assertThat(container.iterator().next(), is(2));
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -41,5 +46,23 @@ public class LinkedContainerTest {
         assertThat(container.iterator().next(), is(1));
         container.add(3);
         container.iterator().next();
+    }
+
+    @Test
+    public void deleteLastTest() {
+        container.add(3);
+        container.delete(2);
+        assertThat(container.iterator().next(), is(1));
+        assertThat(container.iterator().next(), is(2));
+        assertThat(container.iterator().hasNext(), is(false));
+    }
+
+    @Test
+    public void deleteMiddleTest() {
+        container.add(3);
+        container.delete(1);
+        assertThat(container.iterator().next(), is(1));
+        assertThat(container.iterator().next(), is(3));
+        assertThat(container.iterator().hasNext(), is(false));
     }
 }
