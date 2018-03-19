@@ -21,7 +21,7 @@ public class CycleTest {
     }
 
     @Test
-    public void NotCircleCycle() {
+    public void notCircleCycle() {
         Node<Integer> first = new Node<>(1);
         Node<Integer> two = new Node<>(2);
         Node<Integer> third = new Node<>(3);
