@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class ArrayContainer<T> implements Iterable<T> {
-    Object[] container;
-    int index = 0, position = 0, modCount = 0, expectedModCount = 0;
+    protected Object[] container;
+    protected int index = 0, position = 0, modCount = 0, expectedModCount = 0;
 
     public ArrayContainer() {
         this.container = new Object[10];
