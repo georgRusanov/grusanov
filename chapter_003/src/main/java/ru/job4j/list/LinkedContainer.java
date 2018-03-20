@@ -100,7 +100,7 @@ public class LinkedContainer<T> implements Iterable<T> {
         };
     }
 
-    class Node<T> {
+    protected class Node<T> {
         T item;
         Node next;
         Node prev;
