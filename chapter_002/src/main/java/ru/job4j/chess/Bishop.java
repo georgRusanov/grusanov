@@ -13,8 +13,11 @@ public class Bishop extends Figure {
             throw new ImpossibleMoveException("Слон так не ходит");
         } else {
             Cell[] route = new Cell[xAbs];
-            for (int i = 0; i < xAbs; i++) {
-                route[i] = new Cell(dest.x - (xAbs - i - 1) * Integer.compare(dest.x, source.x), dest.y - (xAbs - i - 1) * Integer.compare(dest.y, source.y));
+            int xCompare = Integer.compare(dest.x, source.x);
+            int yCompare = Integer.compare(dest.y, source.y);
+            route[0] = new Cell(dest.x - (xAbs - 1) * xCompare, dest.y - (xAbs - 1) * yCompare);
+            for (int i = 1; i < xAbs; i++) {
+                route[i] = new Cell(route[i - 1].x + xCompare, route[i - 1].y + yCompare);
             }
             return route;
         }
