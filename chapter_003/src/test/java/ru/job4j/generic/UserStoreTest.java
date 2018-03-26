@@ -37,5 +37,4 @@ public class UserStoreTest {
     public void findByIdTest() {
         assertThat(userStore.findById("first"), is(userStore.array.iterator().next()));
     }
-
 }
