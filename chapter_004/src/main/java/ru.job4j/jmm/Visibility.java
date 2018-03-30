@@ -1,4 +1,4 @@
-package ru.job4j.JMM;
+package ru.job4j.jmm;
 
 public class Visibility implements Runnable {
 
