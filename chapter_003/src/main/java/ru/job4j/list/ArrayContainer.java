@@ -1,5 +1,6 @@
 package ru.job4j.list;
 
+import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -18,7 +19,7 @@ public class ArrayContainer<T> implements Iterable<T> {
 
     public void add(T model) {
         if (index == container.length) {
-            System.arraycopy(container, 0, container, 0, container.length * 3 / 2 + 1);
+            Arrays.copyOf(container, container.length * 3 / 2 + 1);
         }
         this.container[this.index++] = model;
         modCount++;

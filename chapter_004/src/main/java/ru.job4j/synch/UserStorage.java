@@ -11,7 +11,7 @@ public class UserStorage {
     @GuardedBy("this")
     private final List<User> storage = new ArrayList<>();
 
-    boolean add (User user) {
+    synchronized boolean add(User user) {
         boolean result = false;
         int index = getIndex(user);
         if (-1 == index) {

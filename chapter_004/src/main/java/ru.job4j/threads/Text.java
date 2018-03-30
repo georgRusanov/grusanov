@@ -45,11 +45,15 @@ class Calculate implements Runnable {
         char[] chars = string.toCharArray();
         if (chars[0] == ' ') {
             gaps++;
-        } else { words++;}
-        for(int i = 1; i < chars.length; i++) {
+        } else {
+            words++;
+        }
+        for (int i = 1; i < chars.length; i++) {
             if (chars[i] == ' ') {
                 gaps++;
-            } else if (chars[i - 1] == ' ') { words++;}
+            } else if (chars[i - 1] == ' ') {
+                words++;
+            }
         }
         return search.equals("gap") ? gaps : words;
     }

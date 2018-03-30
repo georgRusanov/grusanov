@@ -28,7 +28,9 @@ class  CountChar implements Runnable {
                         result++;
                     }
                     i++;
-                } else {throw new InterruptedException();}
+                } else {
+                    throw new InterruptedException();
+                }
             } while (i < chars.length);
             Thread.sleep(500);
         } catch (InterruptedException e) {

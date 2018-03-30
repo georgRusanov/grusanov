@@ -12,7 +12,7 @@ public class BST<E extends Comparable<E>> implements Iterable<E> {
     }
 
     boolean add(E value) {
-        leftOrRight(value,root);
+        leftOrRight(value, root);
         return true;
     }
 

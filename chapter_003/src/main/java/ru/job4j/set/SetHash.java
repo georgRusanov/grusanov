@@ -7,7 +7,7 @@ public class SetHash<E> {
         this.objects = new Object[10];
     }
 
-    boolean add (E e){
+    boolean add(E e) {
         boolean result = false;
         int key = hash(e);
         if (!contains(e)) {
@@ -20,7 +20,7 @@ public class SetHash<E> {
         return result;
     }
 
-    boolean contains (E e){
+    boolean contains(E e) {
         boolean result = false;
         int key = hash(e);
         if (key < objects.length && objects[key] != null) {
@@ -29,7 +29,7 @@ public class SetHash<E> {
         return result;
     }
 
-    boolean remove (E e){
+    boolean remove(E e) {
         boolean result = false;
         int key = hash(e);
         if (contains(e)) {

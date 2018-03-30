@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class SimpleHashMap<K, V> implements Iterable<V>{
+public class SimpleHashMap<K, V> implements Iterable<V> {
     Object[] objects;
     int position = 0;
 
@@ -12,7 +12,7 @@ public class SimpleHashMap<K, V> implements Iterable<V>{
         this.objects = new Object[10];
     }
 
-    boolean insert(K key, V value){
+    boolean insert(K key, V value) {
         int keyHash = hash(key);
         if (keyHash > objects.length) {
             objects = Arrays.copyOf(objects, keyHash * 3 / 2);

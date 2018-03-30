@@ -15,10 +15,12 @@ public class LinkedContainer<T> implements Iterable<T> {
 
     public void add(T obj) {
         if (size == 0) {
-            first = last = new Node(null, obj, null);
+            first = new Node(null, obj, null);
+            last = first;
             iteratorNode = new Node(null, null, first);
         } else {
-            last = last.next = new Node(this.last, obj, null);
+            last.next = new Node(this.last, obj, null);
+            last = last.next;
         }
         size++;
         modCount++;
@@ -40,8 +42,8 @@ public class LinkedContainer<T> implements Iterable<T> {
     public void delete(int index) {
         if (index < size) {
             if (size == 1) {
-                first = last = null;
-
+                last = null;
+                first = last;
             } else {
                 Node deleted = first;
                 for (int i = 1; i <= index; i++) {

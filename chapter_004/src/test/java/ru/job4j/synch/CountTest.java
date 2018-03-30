@@ -36,7 +36,5 @@ public class CountTest {
         first.join();
         second.join();
         //Проверяем результат.
-        assertThat(count.get(), is(2));
-
-    }
+        assertThat(count.get(), is(2)); }
 }

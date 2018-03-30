@@ -14,8 +14,9 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     @Override
     public boolean add(E parent, E child) {
         boolean result = true;
-        if (findBy(parent).isPresent()) {
-            Node<E> parentNode = findBy(parent).get();
+        Optional<Node<E>> found = findBy(parent);
+        if (found.isPresent()) {
+            Node<E> parentNode = found.get();
             for (Node<E> element : parentNode.leaves()) {
                 if (element.eqValue(child)) {
                     result = false;
@@ -53,10 +54,9 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         boolean answer = true;
         Queue<Node<E>> data = new LinkedList<>();
         data.offer(this.root);
-        int num = 0;
         while (!data.isEmpty()) {
             Node<E> el = data.poll();
-            num = 0;
+            int num = 0;
             for (Node<E> child : el.leaves()) {
                 data.offer(child);
                 num++;
