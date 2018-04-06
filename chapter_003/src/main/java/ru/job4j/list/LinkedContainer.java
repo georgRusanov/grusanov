@@ -68,6 +68,18 @@ public class LinkedContainer<T> implements Iterable<T> {
         }
     }
 
+    public boolean contains(T value) {
+        Node temp = iteratorNode;
+        iteratorNode = new Node(null, null, first);
+        for (int i = 0; i < size; i++) {
+            if (iterator().next().equals(value)) {
+                return true;
+            }
+        }
+        iteratorNode = temp;
+        return false;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {

@@ -29,6 +29,15 @@ public class ArrayContainer<T> implements Iterable<T> {
         return (T) this.container[index];
     }
 
+    public boolean contains(T value) {
+        for (int i = 0; i < index; i++) {
+            if (container[i] != null && container[i].equals(value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {

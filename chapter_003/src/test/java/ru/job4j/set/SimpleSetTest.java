@@ -16,6 +16,7 @@ public class SimpleSetTest {
         set.add(1);
         set.add(2);
         set.add(2);
+        set.add(1);
     }
 
     @Test(expected = NoSuchElementException.class)

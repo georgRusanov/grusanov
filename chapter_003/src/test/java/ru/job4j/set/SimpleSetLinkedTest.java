@@ -15,13 +15,17 @@ public class SimpleSetLinkedTest {
     public void addElement() {
         set.add(2);
         set.add(1);
+        set.add(3);
+        set.add(2);
+        set.add(3);
         set.add(2);
     }
 
     @Test(expected = NoSuchElementException.class)
     public void addTest() {
-        assertThat(set.iterator().next(), is(2));
         assertThat(set.iterator().next(), is(1));
+        assertThat(set.iterator().next(), is(3));
+        assertThat(set.iterator().next(), is(2));
         set.iterator().next();
     }
 

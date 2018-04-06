@@ -6,13 +6,7 @@ public class SimpleSet<T> extends ArrayContainer<T> {
 
     @Override
     public void add(T value) {
-        boolean repeat = false;
-        for (int i = 0; i < index; i++) {
-            if (container[i] != null) {
-                repeat = container[i].equals(value);
-            }
-        }
-        if (!repeat) {
+        if (!contains(value)) {
             super.add(value);
         }
     }

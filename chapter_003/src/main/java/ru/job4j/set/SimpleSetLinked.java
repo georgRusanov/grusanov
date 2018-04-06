@@ -6,12 +6,7 @@ public class SimpleSetLinked<T> extends LinkedContainer<T> {
 
     @Override
     public void add(T value) {
-        boolean repeat = false;
-        iteratorNode = new Node(null, null, first);
-        for (int i = 0; i < size; i++) {
-            repeat = iterator().next() == value;
-        }
-        if (!repeat) {
+        if (!contains(value)) {
             super.add(value);
             modCount--;
         }
