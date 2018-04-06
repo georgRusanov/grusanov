@@ -4,13 +4,15 @@ public class Cycle {
 
     boolean hasCycle(Node first) {
         boolean answer = false;
-        Node temp = first;
-        while (first.next != null) {
-            if (first.next == temp) {
+        Node turtle = first;
+        Node rabbit = first.next;
+        while (rabbit != null) {
+            if (turtle == rabbit) {
                 answer = true;
                 break;
             }
-            first = first.next;
+            turtle = turtle.next;
+            rabbit = rabbit.next.next;
         }
         return answer;
     }
