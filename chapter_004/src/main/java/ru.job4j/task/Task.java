@@ -22,9 +22,9 @@ public class Task {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int s : array){
+        for (int s : array) {
             sb.append(s);
         }
         return sb.toString();

@@ -14,7 +14,7 @@ public class ThreadsPool {
 
     public ThreadsPool() {
         for (int i = 0; i < Runtime.getRuntime().availableProcessors(); i++) {
-            new Thread(new workThread()).start();
+            new Thread(new WorkThread()).start();
         }
     }
 
@@ -25,7 +25,7 @@ public class ThreadsPool {
         }
     }
 
-    private final class workThread implements Runnable {
+    private final class WorkThread implements Runnable {
 
         @Override
         public void run() {
@@ -44,6 +44,8 @@ public class ThreadsPool {
         }
     }
 
-    class Work {}
+    class Work {
+
+    }
 }
 

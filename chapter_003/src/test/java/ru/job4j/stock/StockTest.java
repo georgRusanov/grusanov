@@ -54,9 +54,9 @@ public class StockTest {
         assertThat(
                 this.out.toString(),
                 is(
-                        String.format("%-10s %-10s %-10s\n" +
-                                "%-10d %-10d\n" +
-                                "%-10s %-10d %-10d\n",
+                        String.format("%-10s %-10s %-10s\n"
+                                        + "%-10d %-10d\n"
+                                        + "%-10s %-10d %-10d\n",
                                 "Продажа", "Цена", "Покупка",
                                 20, 13,
                                 "", 12, 10)

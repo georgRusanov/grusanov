@@ -39,7 +39,7 @@ public class Stock {
      * @param book эммитент
      */
     void showGlass(String book) {
-        if(glasses.containsKey(book)) {
+        if (glasses.containsKey(book)) {
             System.out.print(glasses.get(book));
         }
     }
@@ -151,7 +151,7 @@ class Glass {
                     oppositeRequest.setVolume(first - second);
                     list.remove(request);
                     removeOpposite(oppositeRequest);
-                } else if (first < second){
+                } else if (first < second) {
                     request.setVolume(second - first);
                     opposite.remove(oppositeRequest);
                     removeOpposite(request);
@@ -174,7 +174,7 @@ class Glass {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%-10s %-10s %-10s\n", "Продажа", "Цена", "Покупка"));
         int price = 0, volume = 0;
-        for(Stock.Request request : bid) {
+        for (Stock.Request request : bid) {
             if (price == 0 && volume == 0) {
                 price = request.getPrice();
                 volume = request.getVolume();
@@ -189,19 +189,19 @@ class Glass {
         sb.append(String.format("%-10d %-10d\n", volume, price));
         price = 0;
         volume = 0;
-        for(Stock.Request request : ask) {
+        for (Stock.Request request : ask) {
             if (price == 0 && volume == 0) {
                 price = request.getPrice();
                 volume = request.getVolume();
             } else if (isSamePrice(request, price)) {
                 volume = request.getVolume() + volume;
             } else {
-                sb.append(String.format("%-10s %-10d %-10d\n", "",price, volume));
+                sb.append(String.format("%-10s %-10d %-10d\n", "", price, volume));
                 volume = request.getVolume();
                 price = request.getPrice();
             }
         }
-        sb.append(String.format("%-10s %-10d %-10d\n", "",price, volume));
+        sb.append(String.format("%-10s %-10d %-10d\n", "", price, volume));
         return sb.toString();
     }
 

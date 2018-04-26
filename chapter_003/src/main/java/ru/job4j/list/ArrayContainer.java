@@ -1,11 +1,16 @@
 package ru.job4j.list;
 
+import net.jcip.annotations.GuardedBy;
+import net.jcip.annotations.ThreadSafe;
+
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+@ThreadSafe
 public class ArrayContainer<T> implements Iterable<T> {
+    @GuardedBy("this")
     protected Object[] container;
     protected int index = 0, position = 0, modCount = 0, expectedModCount = 0;
 
@@ -17,7 +22,7 @@ public class ArrayContainer<T> implements Iterable<T> {
         this.container = new Object[size];
     }
 
-    public void add(T model) {
+    public synchronized void add(T model) {
         if (index == container.length) {
             Arrays.copyOf(container, container.length * 3 / 2 + 1);
         }
@@ -25,11 +30,11 @@ public class ArrayContainer<T> implements Iterable<T> {
         modCount++;
     }
 
-    public T get(int index) {
+    public synchronized T get(int index) {
         return (T) this.container[index];
     }
 
-    public boolean contains(T value) {
+    public synchronized boolean contains(T value) {
         for (int i = 0; i < index; i++) {
             if (container[i] != null && container[i].equals(value)) {
                 return true;

@@ -1,11 +1,15 @@
 package ru.job4j.list;
 
+import net.jcip.annotations.GuardedBy;
+import net.jcip.annotations.ThreadSafe;
+
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
+@ThreadSafe
 public class LinkedContainer<T> implements Iterable<T> {
     protected int size;
+    @GuardedBy("this")
     protected Node first, last, iteratorNode = null;
     protected int modCount = 0, expectedModCount = 0;
 
@@ -13,7 +17,7 @@ public class LinkedContainer<T> implements Iterable<T> {
         this.size = 0;
     }
 
-    public void add(T obj) {
+    public synchronized void add(T obj) {
         if (size == 0) {
             first = new Node(null, obj, null);
             last = first;
@@ -26,7 +30,7 @@ public class LinkedContainer<T> implements Iterable<T> {
         modCount++;
     }
 
-    public T get(int index) {
+    public synchronized T get(int index) {
         T answer = null;
         if (index < size) {
             Node temp = iteratorNode;
@@ -39,7 +43,7 @@ public class LinkedContainer<T> implements Iterable<T> {
         return answer;
     }
 
-    public void delete(int index) {
+    public synchronized void delete(int index) {
         if (index < size) {
             if (size == 1) {
                 last = null;
@@ -68,7 +72,7 @@ public class LinkedContainer<T> implements Iterable<T> {
         }
     }
 
-    public boolean contains(T value) {
+    public synchronized boolean contains(T value) {
         Node temp = iteratorNode;
         iteratorNode = new Node(null, null, first);
         for (int i = 0; i < size; i++) {
