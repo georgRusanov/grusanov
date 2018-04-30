@@ -8,8 +8,8 @@ import java.util.Queue;
 
 @ThreadSafe
 public class ThreadsPool {
-    @GuardedBy("this")
-    private Queue<Work> queue = new LinkedList<>();
+    @GuardedBy("queue")
+    private final Queue<Work> queue = new LinkedList<>();
     private boolean condition = true;
 
     public ThreadsPool() {
@@ -19,9 +19,15 @@ public class ThreadsPool {
     }
 
     void add(Work work) {
-        queue.add(work);
         synchronized (queue) {
-            queue.notify();
+            queue.add(work);
+            queue.notifyAll();
+        }
+    }
+
+    void finish() {
+        synchronized (queue) {
+            condition = false;
         }
     }
 
@@ -29,8 +35,8 @@ public class ThreadsPool {
 
         @Override
         public void run() {
-            while (condition) {
-                synchronized (queue) {
+            synchronized (queue) {
+                while (condition) {
                     while (queue.isEmpty()) {
                         try {
                             queue.wait();
