@@ -42,5 +42,5 @@ public class ParallelSearch {
         };
     }
 
-    //synchronized Queue<String> result() {}
+    //synchronized Queue<String> result() {return this.paths;}
 }
