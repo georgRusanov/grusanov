@@ -2,21 +2,21 @@ package ru.job4j.wait;
 
 public class Lock {
     private boolean locked = true;
-    private String threadName = null;
+    private int threadCode = -1;
 
     synchronized void lock() throws InterruptedException {
-        if (threadName.equals(null)) {
-            Thread.currentThread().getName();
-            this.locked = true;
-        }
         while (locked) {
             this.wait();
+        }
+        if (threadCode == -1) {
+            threadCode = Math.abs(Thread.currentThread().hashCode());
+            this.locked = true;
         }
     }
 
     synchronized void unlock() {
-        if (threadName.equals(Thread.currentThread().getName())) {
-            threadName = null;
+        if (threadCode == Math.abs(Thread.currentThread().hashCode())) {
+            threadCode = -1;
             this.locked = false;
         }
         this.notifyAll();
