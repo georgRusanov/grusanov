@@ -12,7 +12,7 @@ public class ThreadsPool {
     private final Queue<Work> queue = new LinkedList<>();
     private boolean condition = true;
 
-    public ThreadsPool() {
+    public void start() {
         for (int i = 0; i < Runtime.getRuntime().availableProcessors(); i++) {
             new Thread(new WorkThread()).start();
         }
@@ -28,6 +28,7 @@ public class ThreadsPool {
     void finish() {
         synchronized (queue) {
             condition = false;
+            queue.notifyAll();
         }
     }
 
