@@ -1,17 +1,15 @@
 package ru.job4j.wait;
 
 public class Lock {
-    private boolean locked = true;
+    private boolean locked = false;
     private int threadCode = -1;
 
     synchronized void lock() throws InterruptedException {
         while (locked) {
             this.wait();
         }
-        if (threadCode == -1) {
-            threadCode = Math.abs(Thread.currentThread().hashCode());
-            this.locked = true;
-        }
+        threadCode = Math.abs(Thread.currentThread().hashCode());
+        this.locked = true;
     }
 
     synchronized void unlock() {
