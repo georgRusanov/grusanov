@@ -20,8 +20,8 @@ public class FileFindExtVisitor extends SimpleFileVisitor<Path> {
     }
 
     @Override
-    public FileVisitResult visitFile(Path path, BasicFileAttributes attrs){
-        if(path.toString().endsWith(ext)) {
+    public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
+        if (path.toString().endsWith(ext)) {
             paths.add(path.toString());
         }
         return FileVisitResult.CONTINUE;

@@ -15,14 +15,14 @@ public class Logic3T {
         int countDReverse = 0;
         for (int out = 0; out < table.length; out++) {
             for (int in = 0; in < table.length; in++) {
-                if(table[out][in].hasMarkX()) {
+                if (table[out][in].hasMarkX()) {
                     countH++;
                 }
-                if(table[in][out].hasMarkX()) {
+                if (table[in][out].hasMarkX()) {
                     countV++;
                 }
-                if(in == out) {
-                    if(table[out][in].hasMarkX()) {
+                if (in == out) {
+                    if (table[out][in].hasMarkX()) {
                         countD++;
                     }
                 }
@@ -33,7 +33,7 @@ public class Logic3T {
             }
             countH = 0;
             countV = 0;
-            if(table[out][table.length - out - 1].hasMarkX()) {
+            if (table[out][table.length - out - 1].hasMarkX()) {
                 countDReverse++;
             }
         }
@@ -52,14 +52,14 @@ public class Logic3T {
         int countDReverse = 0;
         for (int out = 0; out < table.length; out++) {
             for (int in = 0; in < table.length; in++) {
-                if(table[out][in].hasMarkO()) {
+                if (table[out][in].hasMarkO()) {
                     countH++;
                 }
-                if(table[in][out].hasMarkO()) {
+                if (table[in][out].hasMarkO()) {
                     countV++;
                 }
-                if(in == out) {
-                    if(table[in][out].hasMarkO()) {
+                if (in == out) {
+                    if (table[in][out].hasMarkO()) {
                         countD++;
                     }
                 }
@@ -70,7 +70,7 @@ public class Logic3T {
             }
             countH = 0;
             countV = 0;
-            if(table[out][table.length - out - 1].hasMarkO()) {
+            if (table[out][table.length - out - 1].hasMarkO()) {
                 countDReverse++;
             }
         }
@@ -84,7 +84,7 @@ public class Logic3T {
         boolean answer = false;
         for (Figure3T[] figOut : table) {
             for (Figure3T figure : figOut) {
-                if (figure.hasMarkO() == false && figure.hasMarkX() == false) {
+                if (!figure.hasMarkO() && !figure.hasMarkX()) {
                     answer = true;
                 }
             }

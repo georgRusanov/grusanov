@@ -66,7 +66,7 @@ public class ParallelSearch {
                         Path file = Paths.get(paths.poll());
                         try {
                             String content = new String(Files.readAllBytes(file));
-                            if(!content.contains(text)) {
+                            if (!content.contains(text)) {
                                 files.add(file.toString());
                             }
                         } catch (IOException e) {
