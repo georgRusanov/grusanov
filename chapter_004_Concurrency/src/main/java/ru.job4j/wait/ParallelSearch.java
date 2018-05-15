@@ -17,12 +17,12 @@ public class ParallelSearch {
     private final String root;
     private final String text;
     private final List<String> exts;
-    volatile boolean finish = false;
+    private volatile boolean finish = false;
 
-    @GuardedBy("this")
+    @GuardedBy("itself")
     private final Queue<String> paths = new LinkedList<>();
 
-    @GuardedBy("this")
+    @GuardedBy("itself")
     private final List<String> files = new ArrayList<>();
 
 
@@ -46,6 +46,7 @@ public class ParallelSearch {
                     }
                     synchronized (paths) {
                         paths.addAll(mfv.getPaths());
+                        paths.notifyAll();
                     }
                 }
                 finish = true;
@@ -54,31 +55,38 @@ public class ParallelSearch {
         Thread read = new Thread() {
             @Override
             public void run() {
-                synchronized (paths) {
-                    while (!finish || paths.peek() != null) {
-                        if (paths.peek() == null && !finish) {
+                Path file = null;
+                do {
+                    synchronized (paths) {
+                        while (paths.isEmpty()) {
                             try {
-                                this.wait();
+                                paths.wait();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         }
-                        Path file = Paths.get(paths.poll());
+                        file = Paths.get(paths.poll());
+                    }
+                    if (file != null) {
                         try {
                             String content = new String(Files.readAllBytes(file));
-                            if (!content.contains(text)) {
-                                files.add(file.toString());
+                            if (content.contains(text)) {
+                                synchronized (files) {
+                                    files.add(file.toString());
+                                }
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
-                }
+                } while (!finish || file != null);
             }
         };
     }
 
-    synchronized List<String> result() {
-        return this.files;
+    List<String> result() {
+        synchronized (files) {
+            return this.files;
+        }
     }
 }
