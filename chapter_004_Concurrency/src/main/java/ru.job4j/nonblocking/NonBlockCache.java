@@ -4,7 +4,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class NonBlockCache {
     private volatile int version;
-    ConcurrentHashMap<String,Model> models = new ConcurrentHashMap<>();
+    ConcurrentHashMap<String, Model> models = new ConcurrentHashMap<>();
 
     public NonBlockCache() {
         version = 1;
