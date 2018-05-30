@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.*;
 
 public class FirstJDBC {
-    private static final Logger Log = LoggerFactory.getLogger(FirstJDBC.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FirstJDBC.class);
 
     public static void main(String[] args) {
         BasicConfigurator.configure();
@@ -25,13 +25,13 @@ public class FirstJDBC {
             } rs.close();
             st.close();
         } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException e) {
-                    Log.error(e.getMessage(), e);
+                    LOG.error(e.getMessage(), e);
                 }
             }
         }

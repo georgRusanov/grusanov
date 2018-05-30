@@ -4,41 +4,37 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Bomber {
 
-        final Hero hero;
-        final ReentrantLock[][] board = new ReentrantLock[5][5];
+    final Hero hero;
+    final ReentrantLock[][] board = new ReentrantLock[5][5];
 
     public Bomber(Hero hero) {
         this.hero = hero;
         board[0][0].lock();
     }
 
-    void moveHero() {
-        boolean moved = false;
-        int x = hero.getX();
-        int y = hero.getY();
-        int stepX = 0;
-        int stepY = 0;
-        while (!moved) {
-            stepX += ((int) (Math.random() * 2) - 1);
-            stepY += ((int) (Math.random() * 2) - 1);
-            if (!(stepX == 0 && stepY == 0) && !isBound(x + stepX, y + stepY)) {
-                long startTime = System.currentTimeMillis();
-                while (System.currentTimeMillis() < startTime + 500) {
-                    if (board[x + stepX][y + stepY].tryLock()) {
-                        board[x][y].unlock();
-                        hero.setX(x + stepX);
-                        hero.setY(y + stepY);
-                        moved = true;
-                        break;
-                    }
+    boolean moveHero(Cell dest) {
+        boolean result = false;
+        int sourceX = hero.getPosition().getX();
+        int sourceY = hero.getPosition().getY();
+        int destX = dest.getX();
+        int destY = dest.getY();
+        if (!(destX - sourceX == 0 && destY - sourceY == 0) && !isBound(destX, destY)) {
+            long startTime = System.currentTimeMillis();
+            while (System.currentTimeMillis() < startTime + 500) {
+                if (board[destX][destY].tryLock()) {
+                    board[sourceX][sourceY].unlock();
+                    hero.setPosition(dest);
+                    result = true;
+                    break;
                 }
             }
         }
+        return result;
     }
 
     boolean isBound(int x, int y) {
         boolean result = false;
-        if (x == board.length || x == -1 || y == board.length || y == -1) {
+        if (x >= board.length || x < 0 || y >= board.length || y < 0) {
             result = true;
         }
         return result;
@@ -50,8 +46,12 @@ public class Bomber {
         boolean condition = true;
 
         new Thread(() -> {
+            boolean isMoved;
             while (condition) {
-                bomber.moveHero();
+                isMoved = false;
+                while (isMoved) {
+                    isMoved = bomber.moveHero(new Cell((int) (Math.random() * (bomber.board.length - 1)), (int) (Math.random() * (bomber.board.length - 1))));
+                }
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -63,22 +63,3 @@ public class Bomber {
 
 }
 
-class Hero {
-    private int x = 0, y = 0;
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-}
