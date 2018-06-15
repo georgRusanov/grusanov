@@ -19,6 +19,7 @@
         <module>chapter_003_Collections</module>
         <module>chapter_004_Concurrency</module>
         <module>chapter_005_SQL</module>
+        <module>chapter_006_servlet</module>
     </modules>
 
     <dependencies>

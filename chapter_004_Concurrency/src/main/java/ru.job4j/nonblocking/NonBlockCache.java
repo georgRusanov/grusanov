@@ -3,60 +3,33 @@ package ru.job4j.nonblocking;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class NonBlockCache {
-    private volatile int version;
-    ConcurrentHashMap<String, Model> models = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<Integer, Base> models = new ConcurrentHashMap<>();
+    private int id = 0;
 
-    public NonBlockCache() {
-        version = 1;
-    }
-
-    boolean rightVersion(int actVersion) throws OptimisticException {
-        if (actVersion == version) {
-            return true;
-        } else {
-            throw new OptimisticException("Данные изменены другим");
+    void add(Base model) {
+        try {
+            models.putIfAbsent(id, model);
+            model.setId(id++);
+        } catch (IdException ie) {
+            System.out.println(ie.getMessage());
         }
     }
 
-    void add(String key, Model model) throws OptimisticException {
-        int currentVersion = version;
-        if (rightVersion(currentVersion)) {
-            models.put(key, model);
-            version++;
+    void updateName(Base model) throws OptimisticException {
+        models.computeIfPresent(model.getId(), (Integer k, Base v) -> {
+            if(v.getVersion() == model.getVersion()) {
+                model.incrementVersion();
+                return model;
+            } else {
+                throw new OptimisticException("Model already changed");
+            }
+        });
+    }
+
+    void delete(Base model) throws OptimisticException {
+        if(models.containsKey(model.getId())) {
+            models.remove(model.getId());
         }
     }
 
-    void updateName(String key, String newName) throws OptimisticException {
-        int currentVersion = version;
-        if (models.containsKey(key) && rightVersion(currentVersion)) {
-            models.get(key).setName(newName);
-            version++;
-        }
-    }
-
-    void delete(String key) throws OptimisticException {
-        int currentVersion = version;
-        if (models.containsKey(key) && rightVersion(currentVersion)) {
-            models.remove(key);
-            version++;
-        }
-    }
-
-}
-
-class Model {
-
-    private String name;
-
-    Model(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
