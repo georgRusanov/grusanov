@@ -1,4 +1,4 @@
-package xml_xslt_jdbc;
+package xmlxsltjdbc;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -34,7 +34,7 @@ class Entries {
 
     List<Entry> entries;
 
-    @XmlElement(name="entry")
+    @XmlElement(name = "entry")
     public void setEntries(List<Entry> entries) {
         this.entries = entries;
     }

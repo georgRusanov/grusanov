@@ -1,4 +1,4 @@
-package xml_xslt_jdbc;
+package xmlxsltjdbc;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -18,7 +18,7 @@ public class StoreSQL {
         } catch (ClassNotFoundException cnfe) {
             System.out.println(cnfe.getMessage());
         }
-        try (Connection con = DriverManager.getConnection(String.format("jdbc:sqlite:%s",config.getDataBase()))) {
+        try (Connection con = DriverManager.getConnection(String.format("jdbc:sqlite:%s", config.getDataBase()))) {
             con.setAutoCommit(false);
             Statement stat = con.createStatement();
             stat.executeUpdate("CREATE TABLE IF NOT EXISTS entry (field INTEGER);");

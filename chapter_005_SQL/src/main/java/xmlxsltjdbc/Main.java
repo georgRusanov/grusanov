@@ -1,4 +1,4 @@
-package xml_xslt_jdbc;
+package xmlxsltjdbc;
 
 import org.xml.sax.SAXException;
 
@@ -33,7 +33,7 @@ public class Main {
         storeXML.save(entryList);
 
         ConvertXSQT convertXSQT = new ConvertXSQT();
-        convertXSQT.convert(new File("file.xml"), new File("newFile.xml"), new File("chapter_005_SQL/src/main/java/xml_xslt_jdbc/scheme.xsl"));
+        convertXSQT.convert(new File("file.xml"), new File("newFile.xml"), new File("chapter_005_SQL/src/main/java/xmlxsltjdbc/scheme.xsl"));
 
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = null;

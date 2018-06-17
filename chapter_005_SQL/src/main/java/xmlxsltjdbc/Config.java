@@ -1,4 +1,4 @@
-package xml_xslt_jdbc;
+package xmlxsltjdbc;
 
 public class Config {
     private String dataBase = "test.sqlite";

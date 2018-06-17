@@ -1,4 +1,4 @@
-package xml_xslt_jdbc;
+package xmlxsltjdbc;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
@@ -14,7 +14,7 @@ public class ConvertXSQT {
             TransformerFactory tf = TransformerFactory.newInstance();
             Transformer transformer = tf.newTransformer(new StreamSource(scheme));
             transformer.transform(new StreamSource(source), new StreamResult(dest));
-        } catch(TransformerException e) {
+        } catch (TransformerException e) {
             e.printStackTrace();
         }
     }

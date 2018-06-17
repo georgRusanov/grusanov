@@ -17,7 +17,7 @@ public class NonBlockCache {
 
     void updateName(Base model) throws OptimisticException {
         models.computeIfPresent(model.getId(), (Integer k, Base v) -> {
-            if(v.getVersion() == model.getVersion()) {
+            if (v.getVersion() == model.getVersion()) {
                 model.incrementVersion();
                 return model;
             } else {
@@ -27,7 +27,7 @@ public class NonBlockCache {
     }
 
     void delete(Base model) throws OptimisticException {
-        if(models.containsKey(model.getId())) {
+        if (models.containsKey(model.getId())) {
             models.remove(model.getId());
         }
     }
