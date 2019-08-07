@@ -20,6 +20,7 @@
         <module>chapter_004_Concurrency</module>
         <module>chapter_005_SQL</module>
         <module>chapter_006_servlet</module>
+        <module>chapter_004_1_fp_lambda_stream</module>
     </modules>
 
     <dependencies>
