@@ -41,12 +41,6 @@ public class ConfigTest {
         config.load();
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testExpected()
-    {
-        throw new IllegalArgumentException();
-    }
-
     private void saveToFile(String text) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             writer.write(text);
