@@ -18,7 +18,7 @@ public class Analizy {
 
                 if (i == lines.length - 1) {
                     if (isPeriod) {
-                        out.print(words[1] + ";");
+                        out.append(words[1]).append(";");
                     }
                     return;
                 }
@@ -26,14 +26,14 @@ public class Analizy {
                 if (!isPeriod) {
                     if (badStatus.contains(words[0])) {
                         isPeriod = true;
-                        out.print(words[1] + ";");
+                        out.append(words[1]).append(";");
                     }
                     continue;
                 }
 
                 if (!badStatus.contains(words[0])) {
                     isPeriod = false;
-                    out.println(words[1] + ";");
+                    out.append(words[1]).append(";").append("\r\n");
                 }
             }
         } catch (Exception e) {

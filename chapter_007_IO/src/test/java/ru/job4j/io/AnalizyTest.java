@@ -54,7 +54,6 @@ public class AnalizyTest {
 
         try(BufferedReader reader = new BufferedReader(new FileReader(fileOut.getPath()))) {
             String[] lines = reader.lines().toArray(String[]::new);
-            assertThat(lines.length, is(2));
             assertArrayEquals(expectedResult, lines);
         } catch (IOException e) {
             e.printStackTrace();
