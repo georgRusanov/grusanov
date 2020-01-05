@@ -16,15 +16,22 @@ public class Search {
             File file = filesAndDirs.poll();
             File[] as = file.listFiles();
             if (file.isFile()) {
-                for (String ext : exts) {
-                    if (file.getName().endsWith("." + ext)) {
-                        files.add(file);
-                    }
+                if (isFileHaveNecessaryExtension(file, exts)) {
+                    files.add(file);
                 }
             } else {
                 filesAndDirs.addAll(Arrays.asList(file.listFiles()));
             }
         }
         return files;
+    }
+    
+    private boolean isFileHaveNecessaryExtension(File file, List<String> exts) {
+        for (String ext : exts) {
+            if (file.getName().endsWith("." + ext)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
