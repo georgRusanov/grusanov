@@ -16,20 +16,23 @@ public class Client {
         this.socket = socket;
     }
 
-    public void run() throws IOException {
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        Scanner console = new Scanner(System.in);
-        String request = null;
-        do {
-            request = console.nextLine();
-            out.println(request);
-            in.lines().forEach(System.out::println);
-        } while (!"exit".equalsIgnoreCase(request));
+    public void run() {
+        try (PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+            Scanner console = new Scanner(System.in);
+            String request = null;
+            do {
+                request = console.nextLine();
+                out.println(request);
+                in.lines().forEach(System.out::println);
+            } while (!"exit".equalsIgnoreCase(request));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) throws IOException {
-        try(final Socket socket = new Socket(InetAddress.getByName("127.0.0.1"), 46535)) {
+        try (final Socket socket = new Socket(InetAddress.getByName("127.0.0.1"), 46535)) {
             new Client(socket);
         }
     }

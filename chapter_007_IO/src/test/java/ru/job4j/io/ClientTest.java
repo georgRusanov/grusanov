@@ -27,7 +27,7 @@ public class ClientTest {
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
+        return Arrays.asList(new Object[][]{
                 {"exit", "", String.format("exit%s", NL)},
                 {Joiner.on(NL).join("hello", "exit"), "Hey!", Joiner.on(NL).join("hello", "exit" + NL)}
         });
@@ -40,16 +40,19 @@ public class ClientTest {
     }
 
     @Test
-    public void clientTest() throws IOException {
-        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Socket socket = mock(Socket.class);
-        when(socket.getInputStream()).thenReturn(in);
-        when(socket.getOutputStream()).thenReturn(out);
-        Client client = new Client(socket);
-        System.setIn(new ByteArrayInputStream(systemIn.getBytes()));
-        client.run();
-        assertThat(out.toString(), is(output));
+    public void clientTest() {
+        try (ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+             ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+            Socket socket = mock(Socket.class);
+            when(socket.getInputStream()).thenReturn(in);
+            when(socket.getOutputStream()).thenReturn(out);
+            Client client = new Client(socket);
+            System.setIn(new ByteArrayInputStream(systemIn.getBytes()));
+            client.run();
+            assertThat(out.toString(), is(output));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

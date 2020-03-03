@@ -25,7 +25,7 @@ public class ServerTest {
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
+        return Arrays.asList(new Object[][]{
                 {"exit", ""},
                 {Joiner.on(NL).join("hello", "exit"), String.format("Hello, dear friend, I'm a oracle.%s%s", NL, NL)},
                 {Joiner.on(NL).join("hi", "exit"), String.format("I don't understand%s", NL)}
@@ -38,14 +38,17 @@ public class ServerTest {
     }
 
     @Test
-    public void serverTest() throws IOException {
-        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Socket socket = mock(Socket.class);
-        when(socket.getInputStream()).thenReturn(in);
-        when(socket.getOutputStream()).thenReturn(out);
-        Server server = new Server(socket);
-        server.run();
-        assertThat(out.toString(), is(output));
+    public void serverTest() {
+        try (ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+             ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+            Socket socket = mock(Socket.class);
+            when(socket.getInputStream()).thenReturn(in);
+            when(socket.getOutputStream()).thenReturn(out);
+            Server server = new Server(socket);
+            server.run();
+            assertThat(out.toString(), is(output));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -15,25 +15,28 @@ public class Server {
         this.socket = socket;
     }
 
-    public void run() throws IOException {
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        String ask = null;
-        do {
-            System.out.println("wait command ...");
-            ask = in.readLine();
-            System.out.println(ask);
-            if ("hello".equalsIgnoreCase(ask)) {
-                out.println("Hello, dear friend, I'm a oracle.");
-                out.println();
-            } else if (!"exit".equalsIgnoreCase(ask)) {
-                out.println("I don't understand");
-            }
-        } while (!"exit".equalsIgnoreCase(ask));
+    public void run() {
+        try (PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+            String ask = null;
+            do {
+                System.out.println("wait command ...");
+                ask = in.readLine();
+                System.out.println(ask);
+                if ("hello".equalsIgnoreCase(ask)) {
+                    out.println("Hello, dear friend, I'm a oracle.");
+                    out.println();
+                } else if (!"exit".equalsIgnoreCase(ask)) {
+                    out.println("I don't understand");
+                }
+            } while (!"exit".equalsIgnoreCase(ask));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void main(String[] args) throws IOException{
-        try(final Socket socket = new ServerSocket(2000).accept()) {
+    public static void main(String[] args) throws IOException {
+        try (final Socket socket = new ServerSocket(2000).accept()) {
             new Server(socket);
         }
     }
