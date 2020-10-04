@@ -20,7 +20,7 @@ public class SearchTest {
     public TemporaryFolder temporaryFolder = new TemporaryFolder(new File(System.getProperty("java.io.tmpdir")));
 
     @Test
-    public void EmptyRootFolderReturnEmptyList() {
+    public void emptyRootFolderReturnEmptyList() {
         Search search = new Search();
         exts.add("a");
         List<File> files = search.files(temporaryFolder.getRoot().getPath(), exts);
@@ -28,13 +28,13 @@ public class SearchTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void EmptyExtensionListThrowException() {
+    public void emptyExtensionListThrowException() {
         Search search = new Search();
         List<File> files = search.files(temporaryFolder.getRoot().getPath(), exts);
     }
 
     @Test
-    public void PositiveTest() throws IOException {
+    public void positiveTest() throws IOException {
         Search search = new Search();
         exts.add("a");
         exts.add("b");

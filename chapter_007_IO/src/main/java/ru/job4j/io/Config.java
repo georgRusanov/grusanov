@@ -20,10 +20,11 @@ public class Config {
             read.lines()
                 .filter(line -> !line.startsWith("#") && !line.isEmpty())
                     .peek(line -> {
-                        if(line.chars()
+                        if (line.chars()
                                 .filter(ch -> ch == '=')
-                                .count() != 1)
+                                .count() != 1) {
                             throw new IllegalArgumentException("Wrong property format. Use one char '=' in string.");
+                        }
                     })
                     .map(line -> line.split("="))
                 .forEach(entry -> values.put(entry[0], entry[1]));

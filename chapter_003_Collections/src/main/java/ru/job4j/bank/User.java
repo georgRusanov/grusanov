@@ -12,8 +12,13 @@ public class User {
         return passport;
     }
 
-    public boolean eqauls(User user) {
+    @Override
+    public boolean equals(Object obj) {
         boolean answer = false;
+        if (!(obj instanceof User)) {
+            return false;
+        }
+        User user = (User) obj;
         if (this == user || this.name.equals(user.name) && this.passport.equals(user.passport)) {
             answer = true;
         }

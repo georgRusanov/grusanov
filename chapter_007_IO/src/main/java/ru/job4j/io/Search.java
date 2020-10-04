@@ -9,7 +9,9 @@ import java.util.Queue;
 public class Search {
 
     public List<File> files(String parent, List<String> exts) {
-        if (exts.isEmpty()) throw new IllegalArgumentException("Передан пустой список расширений");
+        if (exts.isEmpty()) {
+            throw new IllegalArgumentException("Передан пустой список расширений");
+        }
         List<File> files = new LinkedList<>();
         Queue<File> filesAndDirs = new LinkedList<>(Arrays.asList(new File(parent).listFiles()));
         while (!filesAndDirs.isEmpty()) {
@@ -25,7 +27,7 @@ public class Search {
         }
         return files;
     }
-    
+
     private boolean isFileHaveNecessaryExtension(File file, List<String> exts) {
         for (String ext : exts) {
             if (file.getName().endsWith("." + ext)) {

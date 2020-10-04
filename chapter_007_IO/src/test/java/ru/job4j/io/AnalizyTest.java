@@ -45,14 +45,14 @@ public class AnalizyTest {
     @Test
     public void test() {
         try (PrintWriter out = new PrintWriter(new FileOutputStream(fileIn))) {
-            Arrays.stream(testData).forEach(line -> out.println(line));
+            Arrays.stream(testData).forEach(out::println);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         analizy.unavailable(fileIn.getPath(), fileOut.getPath());
 
-        try(BufferedReader reader = new BufferedReader(new FileReader(fileOut.getPath()))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileOut.getPath()))) {
             String[] lines = reader.lines().toArray(String[]::new);
             assertArrayEquals(expectedResult, lines);
         } catch (IOException e) {
